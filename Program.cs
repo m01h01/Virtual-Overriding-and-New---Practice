@@ -15,20 +15,25 @@
             RetirementAccount ra = new RetirementAccount("Ben", 30000);
             accounts.Add(ra);
 
-            double deposit = 500;
-            callDeposit(accounts, deposit);
+            double deposit1 = 500;
+            callDeposit(accounts, deposit1);
 
-            double withdraw = 200;
-            bool isWithdrawFromRA = ra.Withdraw(withdraw);
-            if (isWithdrawFromRA == false)
-            {
-                callWithdraw(accounts, withdraw);
-            }
+            double deposit2 = -5000;
+            callDeposit(accounts, deposit2);
+
+            double withdraw1 = 200;
+            callWithdraw(accounts, withdraw1);
+
+            double withdraw2 = -2000;
+            callWithdraw(accounts, withdraw2);
+
+            double overDraw = 50000;
+            callWithdraw(accounts, overDraw);
 
         }
         public static void callDeposit(List<BankAccount> accounts, double amount)
         {
-            Console.WriteLine($"Deposit {amount.ToString("C")}");
+            Console.WriteLine($"Deposit {amount.ToString("")}");
             foreach (BankAccount account in accounts)
             {
                 account.Deposit(amount);
@@ -38,7 +43,7 @@
 
         public static void callWithdraw(List<BankAccount> accounts, double amount)
         {
-            Console.WriteLine($"Withdraw {amount.ToString("C")}");
+            Console.WriteLine($"Withdraw {amount.ToString("")}");
 
             foreach (BankAccount account in accounts)
             {

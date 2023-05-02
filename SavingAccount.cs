@@ -16,19 +16,35 @@ namespace Virtual__Overriding_and_New___Practice
         }
 
         public double Interest { get => _interest; set => _interest = value; }
-        public override bool Deposit(double amount)
+        private bool IsAmountPositive(double amount)
         {
-            bool DepositAmount = base.Deposit(amount);
-            if (DepositAmount)
+            return (amount > 0);
+
+        }
+        private bool IsEnoughMoneyInAcc(double amount)
+        {
+            return amount < Balance;
+        }
+        public override void Deposit(double amount)
+        {
+            if (IsAmountPositive(amount)) 
             {
-                Balance += (amount * _interest);
+                Balance += amount + (amount * _interest);
 
             }
-            return DepositAmount;
+        }
+        public override void Withdraw(double amount)
+        {
+            if (IsAmountPositive(amount) && IsEnoughMoneyInAcc(amount))
+            {
+                Balance -= amount;
+            }
+            
         }
         public override string ToString()
         {
             return base.ToString();
         }
+
     }//namespace
 }//class

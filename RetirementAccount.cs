@@ -17,14 +17,14 @@ namespace Virtual__Overriding_and_New___Practice
 
         }
 
-        public override bool Withdraw(double amount)
+        public override void Withdraw(double amount)
         {
             _printout = "Cannot withdraw from Retirement account";
-            return false;
+           
         }
         public override string ToString()
         {
-            return base.ToString() + $"\n{_printout}";
+            return base.ToString() + $"\n{_printout}\n";
         }
     }
 }

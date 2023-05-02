@@ -15,19 +15,38 @@ namespace Virtual__Overriding_and_New___Practice
         }
 
         public double OverdraftFee { get => _overdraftFee; set => _overdraftFee = value; }
-
-        public override bool Withdraw(double amount)
+        private bool IsAmountPositive(double amount)
         {
-            bool withdrewamount = base.Withdraw(amount);
-            if (!withdrewamount)
+            return (amount > 0);
+
+        }
+        private bool IsEnoughMoneyInAcc(double amount)
+        {
+            return amount < Balance;
+        }
+        public override void Withdraw(double amount)
+        {
+            if (!IsEnoughMoneyInAcc(amount))
             {
                 Balance -= _overdraftFee;
             }
-            return withdrewamount;
+            else if (IsAmountPositive(amount) && IsEnoughMoneyInAcc(amount)) 
+            {
+                Balance -= amount;
+            }
+            
+        }
+        public override void Deposit(double amount)
+        { 
+            if (IsAmountPositive(amount)) 
+            {
+                Balance += amount;
+            }
         }
         public override string ToString()
         {
             return base.ToString();
         }
+       
     }//namesapce
 }//calss
